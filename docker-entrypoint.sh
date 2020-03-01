@@ -23,6 +23,10 @@ if [ ! -e ${data_dir} ]; then
     fi
 
     submin2-admin ${data_dir} apacheconf create all >/dev/null 2>&1 || true
+	
+	if [ "xyes" = "x$svn_list_parent_path" ]; then
+		sed '/SVNParentPath .*/a SVNListParentPath On' ${data_dir}/conf/apache-2.4-svn.conf
+	fi
 
     ln -s ${data_dir}/conf/apache-2.4-webui-cgi.conf /etc/apache2/conf-available/
     ln -s ${data_dir}/conf/apache-2.4-svn.conf /etc/apache2/conf-available/
@@ -43,9 +47,6 @@ if [ ! -e ${data_dir} ]; then
 
 else
     echo "Submin is already configured in ${data_dir}/conf"
-fi
-if [ "xyes" = "x$svn_list_parent_path" ]; then
-	sed '/^SVNParentPath .*/a SVNListParentPath On' ${data_dir}/conf/apache-2.4-svn.conf
 fi
 service apache2 restart
 
