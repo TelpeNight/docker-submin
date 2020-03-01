@@ -28,17 +28,6 @@ if [ ! -e ${data_dir} ]; then
 		sed '/SVNParentPath .*/a SVNListParentPath On' ${data_dir}/conf/apache-2.4-svn.conf
 	fi
 
-    ln -s ${data_dir}/conf/apache-2.4-webui-cgi.conf /etc/apache2/conf-available/
-    ln -s ${data_dir}/conf/apache-2.4-svn.conf /etc/apache2/conf-available/
-
-    {
-        a2enconf apache-2.4-webui-cgi
-        a2enconf apache-2.4-svn
-        a2enmod authn_dbd
-        a2enmod rewrite
-        a2enmod cgid
-    } >/dev/null 2>&1
-
     # disable git
     submin2-admin ${data_dir} config set vcs_plugins svn || true
 
@@ -48,6 +37,18 @@ if [ ! -e ${data_dir} ]; then
 else
     echo "Submin is already configured in ${data_dir}/conf"
 fi
+
+ln -s ${data_dir}/conf/apache-2.4-webui-cgi.conf /etc/apache2/conf-available/ >/dev/null 2>&1
+ln -s ${data_dir}/conf/apache-2.4-svn.conf /etc/apache2/conf-available/ >/dev/null 2>&1
+
+{
+	a2enconf apache-2.4-webui-cgi
+	a2enconf apache-2.4-svn
+	a2enmod authn_dbd
+	a2enmod rewrite
+	a2enmod cgid
+} >/dev/null 2>&1
+
 service apache2 restart
 
 tail -f /var/log/apache2/access.log /var/log/apache2/error.log
