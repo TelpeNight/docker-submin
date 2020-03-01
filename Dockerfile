@@ -16,7 +16,7 @@ RUN apt-get update \
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 	
 RUN curl --insecure -fSL "https://github.com/mjholtkamp/submin/archive/master.zip" -o master.zip \
-    && unzip master.zip -d /opt/submin-master \
+    && unzip master.zip -d /opt \
     && rm master.zip \
     && cd /opt/submin-master \
     && python setup.py install \
