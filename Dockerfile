@@ -14,7 +14,7 @@ RUN apt-get update \
 	   unzip \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* \
-    && curl -fSL "https://github.com/mjholtkamp/submin/archive/master.zip" -o master.zip \
+    && curl --insecure -fSL "https://github.com/mjholtkamp/submin/archive/master.zip" -o master.zip \
     && unzip master.zip -d /opt/submin-master \
     && rm master.zip \
     && cd /opt/submin-master \
