@@ -8,6 +8,7 @@ external_port="${SUBMIN_EXTERNAL_PORT:-80}"
 data_dir="${SUBMIN_DATA_DIR:-/var/lib/submin}"
 svn_repo="${SUBMIN_SVN_DIR:-/var/lib/svn}"
 admin_mail="${SUBMIN_ADMIN_MAIL:-root@submin.local}"
+svn_list_parent_path="${SUBMIN_SVN_LIST_PARENT_PATH:-no}"
 
 if [ ! -e ${data_dir} ]; then
     echo -e "svn\n${svn_repo}\n${hostname}:${external_port}\n\n\n" \
@@ -42,6 +43,9 @@ if [ ! -e ${data_dir} ]; then
 
 else
     echo "Submin is already configured in ${data_dir}/conf"
+fi
+if [ "xyes"== "x$svn_list_parent_path" ]; then
+	sed '/^SVNParentPath .*/a SVNListParentPath On' ${data_dir}/conf/apache-2.4-svn.conf
 fi
 service apache2 restart
 
