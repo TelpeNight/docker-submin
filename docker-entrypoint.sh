@@ -44,7 +44,7 @@ if [ ! -e ${data_dir} ]; then
 else
     echo "Submin is already configured in ${data_dir}/conf"
 fi
-if [ "xyes"== "x$svn_list_parent_path" ]; then
+if [ "xyes" = "x$svn_list_parent_path" ]; then
 	sed '/^SVNParentPath .*/a SVNListParentPath On' ${data_dir}/conf/apache-2.4-svn.conf
 fi
 service apache2 restart
