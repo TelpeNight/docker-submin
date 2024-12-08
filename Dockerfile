@@ -3,11 +3,11 @@ MAINTAINER thaim <thaim24@gmail.com>
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       python \
+       python2 \
        subversion \
-       python-subversion \
+       python2-subversion \
        apache2 \
-       libapache2-svn \
+       libapache2-mod-svn \
        sendmail \
        curl \
        sqlite3 \
