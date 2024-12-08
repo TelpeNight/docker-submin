@@ -6,6 +6,7 @@ RUN apt-get update \
        python3 \
        subversion \
        python3-subversion \
+       python3-distutils \
        apache2 \
        libapache2-mod-svn \
        sendmail \
