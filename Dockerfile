@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian
 MAINTAINER thaim <thaim24@gmail.com>
 
 RUN apt-get update \
