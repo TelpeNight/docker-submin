@@ -13,6 +13,8 @@ RUN apt-get update \
 	   unzip \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+
+RUN pip install svn
 	
 RUN curl --insecure -fSL "https://github.com/TelpeNight/submin/archive/master.zip" -o master.zip \
     && unzip master.zip -d /opt \
