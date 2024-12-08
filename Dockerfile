@@ -3,9 +3,9 @@ MAINTAINER thaim <thaim24@gmail.com>
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       python2 \
+       python3 \
        subversion \
-       python2-subversion \
+       python3-subversion \
        apache2 \
        libapache2-mod-svn \
        sendmail \
@@ -19,7 +19,7 @@ RUN curl --insecure -fSL "https://github.com/TelpeNight/submin/archive/master.zi
     && unzip master.zip -d /opt \
     && rm master.zip \
     && cd /opt/submin-master \
-    && python setup.py install \
+    && python3 setup.py install \
     && cd / \
     && rm -rf /opt/submin-master
 
