@@ -18,7 +18,7 @@ RUN curl --insecure -fSL "https://github.com/TelpeNight/submin/archive/master.zi
     && unzip master.zip -d /opt \
     && rm master.zip \
     && cd /opt/submin-master \
-    && python3 setup.py install \
+    && python setup.py install \
     && cd / \
     && rm -rf /opt/submin-master
 
