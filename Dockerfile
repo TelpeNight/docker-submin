@@ -1,20 +1,19 @@
-FROM python:2.7
+FROM debian:bullseye
 MAINTAINER thaim <thaim24@gmail.com>
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+       python \
        subversion \
        python-subversion \
        apache2 \
-       libapache2-mod-svn \
+       libapache2-svn \
        sendmail \
        curl \
        sqlite3 \
 	   unzip \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-
-RUN pip install svn
 	
 RUN curl --insecure -fSL "https://github.com/TelpeNight/submin/archive/master.zip" -o master.zip \
     && unzip master.zip -d /opt \
